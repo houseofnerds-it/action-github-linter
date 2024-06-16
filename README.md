@@ -33,8 +33,12 @@ jobs:
 
 
 ## Credit
+
+### Actions Skeleton
 This template was forked from [CodelyTV/bash-github_actions-skeleton](https://github.com/CodelyTV/bash-github_actions-skeleton). I just changed the basic parameters, you can find my skeleton in [houseofnerds-it/actions-template](https://github.com/houseofnerds-it/actions-template).
 
-## ⚖️ License
+### Github Linter
+The Linter is a docker container from [rhysd/actionlint](https://github.com/rhysd/actionlint), so all credits go to them. I just made the github actions wrapper.
 
+## ⚖️ License
 [MIT](LICENSE)
