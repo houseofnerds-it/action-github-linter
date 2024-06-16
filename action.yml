@@ -1,19 +1,14 @@
-name: 'The name of your action'
-description: 'The description of the action'
+name: 'Github Linter'
+description: 'This action checks the github workflow files.'
 branding:
   icon: 'alert-circle'
   color: 'gray-dark'
-inputs:
-  GITHUB_TOKEN:
-    description: 'GitHub token'
-    required: true
-  another_input:
-    description: 'A demo argument'
-    required: true
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.GITHUB_TOKEN }}
-    - ${{ inputs.another_input }}
-
+  using: 'composite'
+  steps:
+    - uses: actions/checkout@v4
+    - run: echo "::add-matcher::.github/actionlint-matcher.json"
+    - name: Run linters
+      uses: docker://rhysd/actionlint:1.7.0
+      with:
+        args: -color -shellcheck= -pyflakes=
