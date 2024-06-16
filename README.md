@@ -1,17 +1,39 @@
 <h1 align="center">
-  💻 GitHub Actions Skeleton - for House of Nerds IT
+  💻 Github Actions Linter
 </h1>
 
 <p align="center">
-    Template to use for House of Nerds IT Github Actions
+    Check your workflow files in PRs
 </p>
 
 ## 🚀 Usage
+Here is a example workflow file:
+```
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      # run only on github workflow files
+      - '.github/workflows/**'
 
-Copy this repo via the "Use this template" on this repo page. Then, in your new actions repo, create your workflow files in the folder `.github/workflows` directory.
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    permissions:
+      # needed for the checkout action
+      contents: read
+      # needed to annotate the files in a pull request with comments
+      pull-requests: write
+    name: check github deploy workflow
+    steps:
+      - uses: houseofnerds-it/action-github-linter@master
+```
+
 
 ## Credit
-This repo was forked from [CodelyTV/bash-github_actions-skeleton](https://github.com/CodelyTV/bash-github_actions-skeleton). I just changed the basic parameters.
+This template was forked from [CodelyTV/bash-github_actions-skeleton](https://github.com/CodelyTV/bash-github_actions-skeleton). I just changed the basic parameters, you can find my skeleton in [houseofnerds-it/actions-template](https://github.com/houseofnerds-it/actions-template).
 
 ## ⚖️ License
 
